@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Our Placements - IT Training Center{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-container position-relative d-flex align-items-center justify-content-center mt-0"
+     style="background: url('{% static 'images/brd.jpg' %}') no-repeat center center/cover; height: 300px; width: 100%;"
+     data-aos="fade-down" data-aos-duration="1500">
+    <!-- Overlay for Better Readability -->
+    <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+    <!-- Breadcrumb Content -->
+    <div class="breadcrumb-content text-center text-white position-relative">
+        <h1 class="fw-bold display-4" data-aos="zoom-in" data-aos-duration="1500">Placements</h1>
+        <nav>
+            <ul class="breadcrumb d-flex justify-content-center p-0 m-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item active text-white">Placements</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Our Placements Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">Our Successful Students</h2>
+    <div class="row">
+        {% for placement in placements %}
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="{{ forloop.counter0|add:200 }}">
+            <div class="card shadow-sm border-0 rounded-lg hover-card">
+                <!-- Display the student's image if available, otherwise use a placeholder -->
+                {% if placement.image %}
+                    <img src="{{ placement.image.url }}" class="card-img-top rounded-top" alt="{{ placement.student_name }}">
+                {% else %}
+                    <img src="{% static 'images/placeholder.jpg' %}" class="card-img-top rounded-top" alt="{{ placement.student_name }}">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ placement.student_name }}</h5>
+                    <p class="card-text">Placed at {{ placement.company_name }} as {{ placement.position }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No placements available at the moment.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

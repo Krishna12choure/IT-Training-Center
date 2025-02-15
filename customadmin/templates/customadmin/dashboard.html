@@ -1,0 +1,95 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<!-- Welcome Message Section -->
+<div class="welcome-message text-center mb-5 mt-3">
+    <h3 class="text-dark" style="font-weight: 900; font-size: 30px;">Welcome to  Admin Panel</h3>
+   
+</div>
+
+<!-- Dashboard Cards Section -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Total Courses -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x text-primary"></i>
+                    <p>Total Courses</p>
+                    <hr>
+                    <h3 class="mt-3">{{ courses_count }}</h3>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Placements -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-briefcase fa-3x text-success"></i>
+                    <p>Total Placements</p>
+                    <hr>
+                    <h3 class="mt-3">{{ placements_count }}</h3>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Job Opportunities -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-clipboard-list fa-3x text-warning"></i>
+                    <p>Total Job Opportunities</p>
+                    <hr>
+                    <h3 class="mt-3">{{ job_opportunities_count }}</h3>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Total Gallery Images -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-images fa-3x text-info"></i>
+                    <p>Total Gallery Images</p>
+                    <hr>
+                    <h3 class="mt-3">{{ gallery_images_count }}</h3>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Contact Messages -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-danger"></i>
+                    <p>Total Contact Messages</p>
+                    <hr>
+                    <h3 class="mt-3">{{ contact_messages_count }}</h3>
+                   
+                </div>
+            </div>
+        </div>
+         <!-- Total Testimonial -->
+         <div class="col-md-4">
+            <div class="card shadow border-0 rounded">
+                <div class="card-body text-center">
+                    <i class="fas fa-quote-right fa-3x text-secondary "></i></i>
+                    <p>Total Testimonials</p>
+                    <hr>
+                    <h3 class="mt-3">{{ testimonial_count }}</h3>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

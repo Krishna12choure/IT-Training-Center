@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Contact Us - IT Training Center
+{% endblock %}
+
+{% block content %}
+  <!-- Breadcrumb Section -->
+  <div class="breadcrumb-container position-relative d-flex align-items-center justify-content-center mt-0" style="background: url('{% static 'images/brd.jpg' %}') no-repeat center center/cover; height: 300px; width: 100%;" data-aos="fade-down">
+    <!-- Overlay for Better Readability -->
+    <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+
+    <!-- Breadcrumb Content -->
+    <div class="breadcrumb-content text-center text-white position-relative">
+      <h1 class="fw-bold display-4" data-aos="zoom-in">Contact Us</h1>
+      <nav>
+        <ul class="breadcrumb d-flex justify-content-center p-0 m-0">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a>
+          </li>
+          <li class="breadcrumb-item active text-white">Contact Us</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4" data-aos="fade-up">Get in Touch</h2>
+
+    <div class="row">
+      <!-- Contact Form on Left -->
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+        <div class="contact-info p-4 shadow-sm bg-light rounded" style="height: 460px;">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="d-flex flex-wrap gap-3">
+            <div class="flex-grow-1">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" required />
+            </div>
+            <div class="flex-grow-1">
+              <label class="form-label">Mobile Number</label>
+              <input type="text" class="form-control" name="mobile_number" required />
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <div class="flex-grow-1">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" required />
+            </div>
+          </div>
+          <div class="mt-4">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" name="message" rows="4" required></textarea>
+          </div>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+          </div>
+        </form>
+        </div>
+      </div>
+
+      <!-- Contact Information on Right -->
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+        <div class="contact-info p-4 shadow-sm bg-light rounded">
+          <!-- Address Card -->
+          <div class="card mb-2" data-aos="flip-left">
+            <div class="card-body text-center">
+              <h5 class="card-title">Our Office Address</h5>
+              <p class="card-text">Ground Floor 1, Neelesh Apartment, 1074, Chatuhshrungi Rd, Model Colony, Shivajinagar, Pune, Maharashtra 411016, India</p>
+            </div>
+          </div>
+
+          <!-- General Enquiries Card -->
+          <div class="card mb-2" data-aos="flip-left" data-aos-delay="200">
+            <div class="card-body text-center">
+              <h5 class="card-title">General Enquiries</h5>
+              <p class="card-text">
+                Email: <a href="mailto:info@ittrainingcenter.com">info@ittrainingcenter.com</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Call Us Card -->
+          <div class="card mb-2" data-aos="flip-left" data-aos-delay="300">
+            <div class="card-body text-center">
+              <h5 class="card-title">Call Us</h5>
+              <p class="card-text">+91 84567 78970</p>
+            </div>
+          </div>
+
+          <!-- Timing Card -->
+          <div class="card mb-2" data-aos="flip-left" data-aos-delay="400">
+            <div class="card-body text-center">
+              <h5 class="card-title">Our Timing</h5>
+              <p class="card-text">Mon - Sun: 10:00 AM - 07:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Map Embed -->
+    <div class="map-container mt-4" data-aos="fade-up" data-aos-delay="500">
+      <iframe width="100%" height="500" frameborder="0" style="border: none; margin: 0; padding: 0;" src="https://www.google.com/maps?q=Shivaji+Nagar,Pune&output=embed" allowfullscreen></iframe>
+    </div>
+  </div>
+{% endblock %}

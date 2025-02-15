@@ -1,0 +1,17 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Image</h2>
+    
+    <p>Are you sure you want to delete the image titled <strong>"{{ image.title }}"</strong>?</p>
+    
+    <img src="{{ image.image.url }}" alt="Image to delete" width="200"><br><br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'gallery_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

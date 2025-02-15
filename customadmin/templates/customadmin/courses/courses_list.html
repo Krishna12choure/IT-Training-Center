@@ -1,0 +1,36 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Manage Courses</h2>
+
+<a href="{% url 'add_course' %}" class="btn btn-primary mb-4"><i class="fas fa-plus-circle" style="margin-right: 8px;"></i>Add New Course</a>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>Sr. No.</th>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ course.title }}</td>
+            <td>
+                <!-- Add image with a fixed size -->
+                <img src="{{ course.image.url }}" alt="{{ course.title }}" class="img-fluid" style="max-width: 80px; max-height: 80px; object-fit: contain;">
+            </td>
+            <td>{{ course.description }}</td>
+            <td>
+                <a href="{% url 'edit_course' course.id %}" class="btn btn-warning btn-sm"><i class="fas fa-edit" ></i></a>
+                <a href="{% url 'delete_course' course.id %}" class="btn btn-danger btn-sm mt-1"><i class="fas fa-trash" ></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Testimonial Details</h2>
+    <div class="card shadow-lg p-4">
+        <!-- Image Section -->
+        <div class="text-center mb-3">
+            {% if testimonial.image %}
+                <img src="{{ testimonial.image.url }}" class="rounded-circle border border-primary mb-3"
+                    style="width: 120px; height: 120px; object-fit: cover;" alt="{{ testimonial.student_name }}">
+            {% else %}
+                <span class="text-muted">No Image</span>
+            {% endif %}
+        </div>
+        
+        <!-- Student Name -->
+        <h5 class="fw-bold text-dark text-center mb-3">{{ testimonial.student_name }}</h5>
+
+        <!-- Testimonial Text -->
+        <p class="text-muted fst-italic text-center mb-3">
+            "{{ testimonial.testimonial_text }}"
+        </p>
+
+        <!-- Rating Section -->
+        <p class="text-primary fw-bold text-center mb-4">Rating: {{ testimonial.rating }}/5</p>
+
+        <!-- Back Button -->
+        <div class="text-center">
+            <a href="{% url 'testimonial_list' %}" class="btn btn-secondary w-50">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

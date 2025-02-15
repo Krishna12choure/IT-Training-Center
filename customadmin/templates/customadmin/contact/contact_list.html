@@ -1,0 +1,42 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Contact Messages</h2>
+
+    <!-- Table container with responsive behavior -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 70px;">Sr. No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.mobile_number }}</td>
+                    <td>
+                        <!-- View Button -->
+                        <a href="{% url 'contact_detail' contact.id %}" class="btn btn-info btn-sm me-2">View</a>
+                        <!-- Delete Button with confirmation -->
+                        <a href="{% url 'contact_delete' contact.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No messages found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

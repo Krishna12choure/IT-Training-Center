@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us - IT Training Center{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-container position-relative d-flex align-items-center justify-content-center mt-0"
+     style="background: url('{% static 'images/brd.jpg' %}') no-repeat center center/cover; height: 300px; width: 100%;"
+     data-aos="fade-down" data-aos-duration="1200">
+
+    <!-- Overlay for Better Readability -->
+    <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+
+    <!-- Breadcrumb Content -->
+    <div class="breadcrumb-content text-center text-white position-relative">
+        <h1 class="fw-bold display-4" data-aos="zoom-in" data-aos-duration="1500">About Us</h1>
+        <nav>
+            <ul class="breadcrumb d-flex justify-content-center p-0 m-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item active text-white">About Us</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- About Us Section -->
+<section class="about-us-section py-5" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Image Section -->
+            <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-duration="1200">
+                <img src="{% static 'images/class.png' %}" alt="Training Center" class="img-fluid rounded shadow-lg">
+            </div>
+            <!-- About Us Content Section -->
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1200">
+                <h2 class="fw-bold display-5 mb-3">Welcome to Our IT Training Center</h2>
+                <p class="lead mb-3">At our IT Training Center, we offer a variety of courses designed to help individuals and professionals advance their skills in the field of Information Technology. With state-of-the-art infrastructure and experienced instructors, we are committed to providing high-quality training.</p>
+                <p class="mb-3">We believe in practical learning and focus on real-world applications of technology to prepare our students for the challenges they will face in the IT industry. Our mission is to help our students build strong foundations in programming, web development, data science, and more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pune City Content Section -->
+<section class="pune-city-section py-5 bg-light" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container">
+        <h2 class="fw-bold text-center display-5 mb-4" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Why Pune is the Best Place for IT Training</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+                <p class="lead">Pune, often referred to as the 'Oxford of the East', is known for its vibrant educational culture and thriving IT industry. The city is home to numerous tech parks and global companies, making it an ideal location for IT training and career development.</p>
+                <p class="mb-3">With a rich student culture and a growing demand for skilled IT professionals, Pune offers abundant opportunities for both learning and career growth. Whether you are looking to enhance your programming skills, learn new technologies, or start a career in the IT sector, Pune is the perfect city to begin your journey.</p>
+            </div>
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="400">
+                <img src="{% static 'images/city.png' %}" alt="Pune City" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

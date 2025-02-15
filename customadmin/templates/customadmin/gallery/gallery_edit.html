@@ -1,0 +1,39 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Edit Image</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+                {% csrf_token %}
+
+                <!-- Title Input -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" value="{{ image.title }}" placeholder="Edit image title">
+                </div>
+                
+                <!-- Current Image Display -->
+                <div class="mb-3">
+                    <label class="form-label">Current Image:</label><br>
+                    <img src="{{ image.image.url }}" alt="Current Image" class="img-fluid mb-3" width="150">
+                </div>
+                
+                <!-- Upload New Image Input -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Image (Optional):</label>
+                    <input type="file" id="image" name="image" class="form-control">
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <a href="{% url 'gallery_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

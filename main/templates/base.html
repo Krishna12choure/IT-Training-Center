@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        IT Training Center
+      {% endblock %}
+    </title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favi.ico' %}" type="image/x-icon" />
+    
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> <!-- AOS CSS -->
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    
+    <style>
+      /* Loader Styles */
+      .loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Topbar styling */
+      .topbar {
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 999;
+      }
+
+      .topbar .contact-info {
+        font-size: 14px;
+      }
+
+      .topbar .social-icons i {
+        margin-left: 15px;
+        font-size: 18px;
+      }
+
+      /* Navbar styling */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #343a40;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-nav {
+        margin-left: auto;
+      }
+
+      .nav-item {
+        margin-left: 10px;
+      }
+
+      .nav-link {
+        color: #ffffff !important;
+        font-size: 18px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #ff6347 !important;
+        text-decoration: underline;
+      }
+
+      .navbar-logo {
+        width: 70px;
+        height: auto;
+      }
+
+      body {
+        padding-top: 50px;
+      }
+
+      .navbar-logo {
+        max-width: 100%;
+        height: auto;
+        max-height: 50px;
+      }
+
+      .navbar-brand img {
+        width: 70px;
+      }
+
+      .floating-icons {
+        position: fixed;
+        bottom: 30px;
+        left: 10px;
+        right: 10px;
+        z-index: 9999;
+      }
+
+      .floating-icons a {
+        display: block;
+        font-size: 24px;
+        color: white;
+        background-color: rgb(29, 203, 35);
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .floating-icons .whatsapp {
+        background-color: #25d366;
+      }
+
+      .floating-icons .phone {
+        background-color: rgb(40, 46, 215);
+      }
+
+      .floating-icons .phone {
+        position: absolute;
+        left: 20px;
+      }
+
+      .floating-icons .whatsapp {
+        position: absolute;
+        right: 20px;
+      }
+
+      .floating-icons a:hover {
+        transform: scale(1.1);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .navbar-nav {
+          text-align: center;
+        }
+
+        .topbar .contact-info {
+          font-size: 12px;
+        }
+
+        .topbar .social-icons {
+          text-align: center;
+        }
+
+        .floating-icons {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loader -->
+    <div class="loader-wrapper" id="loader">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="topbar mt-0 mb-2" data-aos="fade-down" data-aos-duration="1000">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <div class="contact-info">
+          <span><i class="fas fa-envelope m-1"></i> abs@ittraining.com</span> |
+          <span><i class="fas fa-phone-alt m-1"></i> +91 84567 78970</span> |
+          <span><i class="fas fa-clock m-1"></i> Mon - Sun: 10:00 AM - 07:00 PM</span>
+        </div>
+        <div class="social-icons">
+          <a href="#" class="text-dark"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-dark"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-dark"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-0">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'images/logoim.png' %}" alt="IT Training Center" class="navbar-logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'courses' %}">Courses</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'placement' %}">Our Placement</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'career' %}">Career</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'Testimonial' %}">Testimonial</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="{% url 'customadmin_login' %}">Admin Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5" data-aos="fade-up" data-aos-duration="1500">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 text-center text-md-start">
+            <div class="text-center">
+              <img src="{% static 'images/logoim.png' %}" alt="IT Training Center" class="navbar-logo mb-3">
+            </div>
+            <p>
+              IT Training Center provides high-quality education in Python and IT courses, helping students achieve their career goals with expert guidance.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h5 class="mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/" class="text-white text-decoration-none">Home</a></li>
+              <li><a href="/about/" class="text-white text-decoration-none">About Us</a></li>
+              <li><a href="/courses/" class="text-white text-decoration-none">Courses</a></li>
+              <li><a href="/placement/" class="text-white text-decoration-none">Our Placement</a></li>
+              <li><a href="/gallery/" class="text-white text-decoration-none">Gallery</a></li>
+              <li><a href="/career/" class="text-white text-decoration-none">Career</a></li>
+              <li><a href="/contact/" class="text-white text-decoration-none">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5 class="mb-3">Contact Us</h5>
+            <p><i class="fas fa-map-marker-alt m-1"></i>Ground Floor 1, Neelesh Apartment, 1074, Chatuhshrungi Rd, Model Colony, Shivajinagar, Pune, Maharashtra 411016, India</p>
+            <p><i class="fas fa-phone-alt m-1"></i> +91 84567 78970</p>
+            <p><i class="fas fa-envelope m-1"></i> abs@ittraining.com</p>
+          </div>
+          <div class="col-md-3 text-center text-md-start">
+            <h5 class="mb-3 text-center">Follow Us</h5>
+            <a href="#" class="m-3" style="color: #1877F2;"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="#" class="m-3" style="color: #1DA1F2;"><i class="fab fa-twitter fa-2x"></i></a>
+            <a href="#" class="m-3" style="color: #0077b5;"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="#" class="m-2" style="color: #E4405F;"><i class="fab fa-instagram fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Icons -->
+    <div class="floating-icons mb-5">
+      <a href="tel:+918456778970" class="phone">
+        <i class="fas fa-phone-alt"></i>
+      </a>
+      <a href="https://wa.me/+918456778970" class="whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- AOS & Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+
+      // Hide the loader when the page is fully loaded
+      window.addEventListener("load", function () {
+        document.getElementById("loader").style.display = "none";
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

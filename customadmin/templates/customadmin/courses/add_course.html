@@ -1,0 +1,54 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Add New Course</h2>
+
+    <div class="d-flex justify-content-center">
+        <form method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm w-75">
+            {% csrf_token %}
+
+            <!-- Course Title -->
+            <div class="form-group mb-3">
+                <label for="{{ form.title.id_for_label }}" class="form-label">Course Title</label>
+                {{ form.title }}
+            </div>
+
+            <!-- Description -->
+            <div class="form-group mb-3">
+                <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                {{ form.description }}
+            </div>
+
+            <!-- Course Image -->
+            <div class="form-group mb-3">
+                <label for="{{ form.image.id_for_label }}" class="form-label">Course Image</label>
+                {{ form.image }}
+            </div>
+
+            <!-- Course Duration -->
+            <div class="form-group mb-3">
+                <label for="{{ form.duration.id_for_label }}" class="form-label">Duration</label>
+                {{ form.duration }}
+            </div>
+
+            <!-- Live Project -->
+            <div class="form-check mb-3">
+                {{ form.live_project }}
+                <label class="form-check-label" for="{{ form.live_project.id_for_label }}">
+                    Includes Live Project
+                </label>
+            </div>
+
+            <!-- Training Format -->
+            <div class="form-group mb-3">
+                <label for="{{ form.training_format.id_for_label }}" class="form-label">Training Format</label>
+                {{ form.training_format }}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success w-100">Add Course</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

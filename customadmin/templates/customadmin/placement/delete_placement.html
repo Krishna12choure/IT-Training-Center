@@ -1,0 +1,15 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Are you sure you want to delete this placement?</h2>
+    
+    <p><strong>{{ placement.student_name }}</strong> has been placed at <strong>{{ placement.company_name }}</strong> as <strong>{{ placement.position }}</strong>.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'placement_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

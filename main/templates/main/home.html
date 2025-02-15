@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Home - IT Training Center
+{% endblock %}
+
+{% block content %}
+ <!-- Slider Section (Carousel) -->
+<div id="carouselExampleCaptions" class="carousel slide mt-1" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active" data-bs-interval="3000" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'images/slider1.jpg' %}" class="d-block w-100" alt="Training" style="height: 500px; object-fit: cover;">
+      <div class="carousel-caption  position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h5 class="display-6 fw-bold" data-aos="fade-up" data-aos-duration="1200">Expert-Led IT Training</h5>
+        <p class="fs-6 fw-semibold" data-aos="fade-up" data-aos-duration="1500">Learn from professionals and build skills to succeed in the tech world.</p>
+      </div>
+    </div>
+    
+    <!-- Slide 2 -->
+    <div class="carousel-item" data-bs-interval="3000" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'images/slider2.jpg' %}" class="d-block w-100" alt="Programming" style="height: 500px; object-fit: cover;">
+      <div class="carousel-caption  position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h5 class="display-6 fw-bold" data-aos="fade-up" data-aos-duration="1200">Programming Mastery</h5>
+        <p class="fs-6 fw-semibold" data-aos="fade-up" data-aos-duration="1500">Master Python, Java, C++, and more with hands-on projects.</p>
+      </div>
+    </div>
+    
+    <!-- Slide 3 -->
+    <div class="carousel-item" data-bs-interval="3000" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'images/slider3.jpg' %}" class="d-block w-100" alt="Career Support" style="height: 500px; object-fit: cover;">
+      <div class="carousel-caption  position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h5 class="display-6 fw-bold" data-aos="fade-up" data-aos-duration="1200">Career Support</h5>
+        <p class="fs-6 fw-semibold" data-aos="fade-up" data-aos-duration="1500">Our placement assistance and career guidance will help you land your dream job.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+  <!-- Main Content Section -->
+<section class="bg-light py-5" data-aos="fade-up" data-aos-duration="1000">
+  <div class="container text-center my-5">
+    <!-- Section Heading -->
+    <h1 class="display-4 mb-4 text-primary font-weight-bold" data-aos="fade-up" data-aos-duration="1200">
+      Welcome to IT Training Center
+    </h1>
+    <p class="lead mb-5 text-muted" data-aos="fade-up" data-aos-duration="1500">
+      Master Programming with Our Expert-Led Training.
+    </p>
+
+    <!-- Course Highlights -->
+    <div class="row g-4">
+      {% for course in courses %}
+      <div class="col-md-3" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+        <div class="card shadow-lg border-light rounded-3 h-100">
+          <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" style="height: 200px; object-fit: contain;" />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fs-4 fw-bold text-dark">{{ course.title }}</h5>
+            <p class="card-text">{{ course.description|truncatewords:20 }}</p>
+
+            <!-- Buttons below course description -->
+            <div class="d-flex justify-content-between mt-auto">
+              <a href="{% url 'course_details' course.id %}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+              <a href="{% url 'contact' %}" class="btn btn-outline-success btn-sm">
+                Enquire
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center">No courses available.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Call to Action -->
+    <a href="{% url 'courses' %}" class="btn btn-primary btn-lg mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+      Explore Courses
+    </a>
+  </div>
+</section>
+
+  
+
+  <!-- Why Choose Us Section -->
+  <section class="bg-white py-5" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container text-center">
+      <h2 class="display-5 mb-4 text-primary font-weight-bold" data-aos="fade-up" data-aos-duration="1200">Why Choose Us?</h2>
+      <p class="lead mb-5 text-muted" data-aos="fade-up" data-aos-duration="1500">Here are the reasons why we are the best choice for your IT training journey.</p>
+
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Expert Trainers</h5>
+              <p class="card-text">Our trainers are experienced professionals who bring real-world knowledge and practical expertise to every session.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Hands-on Learning</h5>
+              <p class="card-text">We emphasize practical experience, ensuring you learn by doing with real-world projects that prepare you for the job market.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Career Support</h5>
+              <p class="card-text">Get expert guidance on resume building, interview preparation, and job placement assistance to kick-start your career.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Flexible Schedules</h5>
+              <p class="card-text">Our courses are designed to fit your schedule, with flexible timings and options for both full-time and part-time students.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Affordable Pricing</h5>
+              <p class="card-text">We offer competitive pricing with various packages to ensure high-quality education is accessible to everyone.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+          <div class="card shadow-lg border-light rounded-3 p-4">
+            <div class="card-body">
+              <h5 class="card-title fs-5 fw-bold text-dark">Comprehensive Curriculum</h5>
+              <p class="card-text">Our curriculum is designed to cover all aspects of programming, software development, and IT, ensuring a well-rounded education.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Teachers Section -->
+  <section class="bg-light py-5" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container text-center">
+      <h2 class="display-5 mb-4 text-primary font-weight-bold" data-aos="fade-up" data-aos-duration="1200">Our Expert Trainers</h2>
+      <p class="lead mb-5 text-muted" data-aos="fade-up" data-aos-duration="1500">Meet the professionals who will guide you through your learning journey.</p>
+
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+          <div class="card shadow-lg border-light rounded-3 text-center p-4 h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; background-color: #fff;">
+            <img src="{% static 'images/teacher1.jpg' %}" alt="Teacher 1" class="card-img-top rounded-circle" style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto; transition: transform 0.3s ease;" />
+            <div class="card-body" style="padding: 1.5rem;">
+              <h5 class="card-title fs-4 fw-bold" style="font-size: 1.25rem; font-weight: 600;">John Doe</h5>
+              <p class="card-text">Expert in Python and Data Science with over 10 years of industry experience.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          <div class="card shadow-lg border-light rounded-3 text-center p-4 h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; background-color: #fff;">
+            <img src="{% static 'images/teacher2.jpg' %}" alt="Teacher 2" class="card-img-top rounded-circle" style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto; transition: transform 0.3s ease;" />
+            <div class="card-body" style="padding: 1.5rem;">
+              <h5 class="card-title fs-4 fw-bold" style="font-size: 1.25rem; font-weight: 600;">Jane Smith</h5>
+              <p class="card-text">Senior Java developer and OOP expert, passionate about coding best practices.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+          <div class="card shadow-lg border-light rounded-3 text-center p-4 h-100" style="transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; background-color: #fff;">
+            <img src="{% static 'images/Teacher3.jpeg' %}" alt="Teacher 3" class="card-img-top rounded-circle" style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto; transition: transform 0.3s ease;" />
+            <div class="card-body" style="padding: 1.5rem;">
+              <h5 class="card-title fs-4 fw-bold" style="font-size: 1.25rem; font-weight: 600;">Michael Brown</h5>
+              <p class="card-text">UI/UX expert with a focus on creating intuitive and user-friendly designs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Testimonials Section -->
+<section class="bg-light py-5 position-relative" data-aos="fade-up" data-aos-duration="1000">
+  <div class="container text-center">
+      <!-- Section Title -->
+      <h2 class="display-5 mb-4 text-primary fw-bold" data-aos="fade-up" data-aos-duration="1200">
+          What Our Students Say
+      </h2>
+      <p class="lead mb-5 text-muted" data-aos="fade-up" data-aos-duration="1500">
+          Hear from our students who have transformed their careers with our training.
+      </p>
+
+      <!-- Testimonial Carousel -->
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+        <div class="carousel-inner">
+              
+          {% for testimonial in testimonials %}
+            {% if forloop.counter0|divisibleby:2 %}
+            <!-- Start of a new carousel item -->
+            <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="10000">
+                <div class="row justify-content-center">
+            {% endif %}
+            
+                    <div class="col-md-5 mx-2">
+                        <div class="card shadow-lg border-light p-4 text-center">
+                            <div class="text-center">
+                                {% if testimonial.image %}
+                                    <img src="{{ testimonial.image.url }}" class="rounded-circle border border-primary mb-3"
+                                        style="width: 120px; height: 120px; object-fit: cover;" alt="{{ testimonial.student_name }}">
+                                {% else %}
+                                    <img src="{% static 'images/placeholder.jpg' %}" class="rounded-circle border border-primary mb-3"
+                                        style="width: 120px; height: 120px; object-fit: cover;" alt="{{ testimonial.student_name }}">
+                                {% endif %}
+                            </div>
+                            <h5 class="fw-bold text-dark">{{ testimonial.student_name }}</h5>
+                            <p class="text-muted fst-italic">
+                                "{{ testimonial.testimonial_text }}"
+                            </p>
+                            
+                            <!-- Display Star Rating -->
+                            <div class="rating">
+                                {% for i in "12345"|make_list %}
+                                    {% if forloop.counter <= testimonial.full_stars %}
+                                        <i class="fas fa-star text-warning"></i>  <!-- Full star -->
+                                    {% elif testimonial.half_star and forloop.counter == testimonial.full_stars|add:1 %}
+                                        <i class="fas fa-star-half-alt text-warning"></i>  <!-- Half star -->
+                                    {% else %}
+                                        <i class="far fa-star text-warning"></i>  <!-- Empty star -->
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
+                </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+          
+          {% if testimonials|length == 1 %}
+          <!-- If only one testimonial exists, duplicate it to maintain carousel functionality -->
+          <div class="carousel-item" data-bs-interval="10000">
+              <div class="row justify-content-center">
+                  <div class="col-md-5 mx-2">
+                      <div class="card shadow-lg border-light p-4 text-center mt-1">
+                          <div class="text-center">
+                              <img src="{{ testimonials.0.image.url }}" class="rounded-circle border border-primary mb-3"
+                                  style="width: 120px; height: 120px; object-fit: cover;" alt="{{ testimonials.0.student_name }}">
+                          </div>
+                          <h5 class="fw-bold text-dark">{{ testimonials.0.student_name }}</h5>
+                          <p class="text-muted fst-italic">
+                              "{{ testimonials.0.testimonial_text }}"
+                          </p>
+                          <div class="rating">
+                              {% for i in "12345"|make_list %}
+                                  {% if forloop.counter <= testimonials.0.full_stars %}
+                                      <i class="fas fa-star text-warning"></i>  <!-- Full star -->
+                                  {% elif testimonials.0.half_star and forloop.counter == testimonials.0.full_stars|add:1 %}
+                                      <i class="fas fa-star-half-alt text-warning"></i>  <!-- Half star -->
+                                  {% else %}
+                                      <i class="far fa-star text-warning"></i>  <!-- Empty star -->
+                                  {% endif %}
+                              {% endfor %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endif %}
+          
+      </div>
+      
+
+         
+      </div>
+  </div>
+</section>
+
+
+
+
+  
+{% endblock %}

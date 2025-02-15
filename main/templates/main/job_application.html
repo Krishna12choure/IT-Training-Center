@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Job Application - IT Training Center{% endblock %}
+
+{% block content %}
+
+<div class="container my-5 p-4 rounded shadow-lg" style="background-color: #f8f9fa;">
+    <h2 class="mb-4 text-center text-primary">Join Us</h2>
+    <p class="lead text-center mb-5 text-muted">Fill in the details below to apply for the job.</p>
+
+    <!-- Success message if job application is submitted successfully -->
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Job Application Form -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-3"> <!-- 'g-3' provides spacing between form fields -->
+            <!-- Full Name -->
+            <div class="col-md-6 mb-3">
+                <label for="full_name" class="form-label">Full Name</label>
+                <input type="text" name="full_name" id="full_name" class="form-control" value="{{ form.full_name.value }}" required>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" value="{{ form.email.value }}" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="col-md-6 mb-3">
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ form.phone_number.value }}" required>
+            </div>
+
+            <!-- Resume -->
+            <div class="col-md-6 mb-3">
+                <label for="resume" class="form-label">Upload Resume</label>
+                <input type="file" name="resume" id="resume" class="form-control" accept=".pdf,.doc,.docx" required>
+            </div>
+
+
+            <!-- Submit Button -->
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-5">Submit Application</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

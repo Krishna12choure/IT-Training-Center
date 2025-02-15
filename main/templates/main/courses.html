@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Courses - IT Training Center{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-container position-relative d-flex align-items-center justify-content-center mt-0"
+     style="background: url('{% static 'images/brd.jpg' %}') no-repeat center center/cover; height: 300px; width: 100%;"
+     data-aos="fade-down">
+
+    <!-- Overlay for Better Readability -->
+    <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+
+    <!-- Breadcrumb Content -->
+    <div class="breadcrumb-content text-center text-white position-relative">
+        <h1 class="fw-bold" data-aos="zoom-in" data-aos-duration="1500">Courses</h1>
+        <nav>
+            <ul class="breadcrumb d-flex justify-content-center p-0 m-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item active text-white">Courses</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Courses Section -->
+<div class="container text-center my-5" data-aos="fade-up" data-aos-duration="1500">
+    <h1 class="mb-4" data-aos="fade-up" data-aos-duration="1200">Our Courses</h1>
+    <p class="lead" data-aos="fade-up" data-aos-duration="1400">Explore our industry-focused IT courses and enhance your career.</p>
+
+    <div class="row mt-5">
+        {% for course in courses %}
+        <div class="col-md-3 d-flex justify-content-center mb-4" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+            <div class="card shadow-sm text-center w-100" style="transition: transform 0.3s ease;">
+                <!-- Image Section with fade-left animation -->
+                <div class="card-img-container d-flex justify-content-center" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="{{ course.image.url }}" class="rounded-circle img-fluid" alt="{{ course.title }}" style="max-width: 120px; height: 120px; object-fit: cover;">
+                </div>
+                <hr class="my-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.title }}</h5>
+                    <p class="card-text">{{ course.description }}</p>
+
+                    <!-- Added Details and Enquire Buttons -->
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'course_details' course.id %}" class="btn btn-outline-primary btn-sm">Details</a>
+                        <a href="{% url 'contact' %}" class="btn btn-outline-success btn-sm">Enquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>No courses available at the moment.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
